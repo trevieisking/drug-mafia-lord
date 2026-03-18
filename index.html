@@ -43,32 +43,33 @@ button {
     <button id="sellBtn">Sell</button>
 </div>
 
+<!-- 👇 SCRIPT MOVED HERE (IMPORTANT) -->
 <script>
 let cash = 0;
 let location = "Street";
 
-// Wait until page fully loads
-window.onload = function () {
+const statusText = document.getElementById("status");
+const startBtn = document.getElementById("startBtn");
+const moveBtn = document.getElementById("moveBtn");
+const sellBtn = document.getElementById("sellBtn");
 
-    document.getElementById("startBtn").onclick = function () {
-        document.getElementById("status").innerText =
-            "You are on the street. Cash: £" + cash;
-    };
+startBtn.addEventListener("click", () => {
+    statusText.innerText = "You are on the street. Cash: £" + cash;
+});
 
-    document.getElementById("moveBtn").onclick = function () {
-        location = "Area " + Math.floor(Math.random() * 5);
-        update();
-    };
+moveBtn.addEventListener("click", () => {
+    location = "Area " + Math.floor(Math.random() * 5);
+    update();
+});
 
-    document.getElementById("sellBtn").onclick = function () {
-        let earned = Math.floor(Math.random() * 100);
-        cash += earned;
-        update("Sold for £" + earned);
-    };
-};
+sellBtn.addEventListener("click", () => {
+    let earned = Math.floor(Math.random() * 100);
+    cash += earned;
+    update("Sold for £" + earned);
+});
 
 function update(msg = "") {
-    document.getElementById("status").innerText =
+    statusText.innerText =
         location + " | Cash: £" + cash + " " + msg;
 }
 </script>
